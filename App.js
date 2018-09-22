@@ -9,15 +9,14 @@ const config = {
     Authorization: authToken
   },
   params: {
-    term: "tacos",
-    location: "main 123st"
+    phone: "+14157492060"
   }
 };
 
 export default class App extends React.Component {
   componentWillMount() {
     axios
-      .get("https://api.yelp.com/v3/businesses/search", config)
+      .get("https://api.yelp.com/v3/businesses/search/phone", config)
       .then(response => console.log(response.data.businesses))
       .catch(function(error) {
         console.log(error);
