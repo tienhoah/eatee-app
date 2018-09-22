@@ -1,5 +1,6 @@
 import React from 'react';
 import { FlatList, ActivityIndicator, Text, View  } from 'react-native';
+import axios from 'axios';
 
 export default class FetchExample extends React.Component {
 
@@ -9,22 +10,17 @@ export default class FetchExample extends React.Component {
   }
 
   componentDidMount(){
-    http://192.168.88.173:3000
-    return fetch('http://192.168.88.173:3001/api/users')
-      .then((response) => response.json())
-      .then((responseJson) => {
-
+    axios.get('http://192.168.88.173:3001/api/users')
+      .then((response) => {
+        console.log(response.data);
         this.setState({
           isLoading: false,
-          dataSource: responseJson,
-        }, function(){
-
+          dataSource: response.data,
         });
-
       })
-      .catch((error) =>{
-        console.error(error);
-      });
+      .catch(function(error) {
+        console.log(error);
+      })
   }
 
 
@@ -43,7 +39,7 @@ export default class FetchExample extends React.Component {
         <FlatList
           data={this.state.dataSource}
           renderItem={({item}) => <Text>{item.first_name}, {item.last_name}</Text>}
-          keyExtractor={({id}, index) => item.id}
+          keyExtractor = {(item, index) => String(item.id)}
         />
       </View>
     );
