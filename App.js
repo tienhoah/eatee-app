@@ -52,7 +52,7 @@ export default class App extends React.Component {
           data={this.state.data}
           renderItem={({ item }) => (
             <Text>
-              Phone: {item.display_phone}, Owner: {item.name}, Price Range:{" "}
+              Restaurant: {item.name}, Phone: {item.display_phone}, Price Range:{" "}
               {item.price}, Address: {item.location.address1}, City:{" "}
               {item.location.city}
             </Text>
